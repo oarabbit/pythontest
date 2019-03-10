@@ -15,10 +15,12 @@ def extrace_object_demo():
         lower_hsv = np.array([100,43,46])
         upper_hsv = np.array([124,255,255])
         mask = cv.inRange(hsv,lowerb=lower_hsv,upperb=upper_hsv)
-        # 调节图像颜色信息（H）、饱和度（S）、亮度（V）区间
+        # 调节图像颜色信息（H）、饱和度（S）、亮度（V）区间        
         # 第一个参数是输入的图像，第二个参数是hsv三个通道的低值，第三个参数是高值
+        dst = cv.bitwise_and(frame,frame,mask=mask)
         cv.imshow("video",frame)
         cv.imshow("mask",mask)
+        cv.imshow("dst",dst)
         c = cv.waitKey(40)
         if cv.waitKey(50) & 0xFF == ord('q'):
             break
